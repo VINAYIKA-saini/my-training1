@@ -1,38 +1,22 @@
 const express = require('express');
-const abc = require('../introduction/intro')
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
-    console.log('My batch is', abc.name)
-    abc.printName()
-    logger.welcome()
+router.get('/array', function (req, res) {
+   
+    let arr= [1,2,3,5,6,7] 
+	   ///LOGIC WILL GO HERE 
+      //logic : sum of numbers is n(n+1)/2..so get sum of all numbers in array. now take sum of numbers till last digit in the array
 
-    res.send('My second ever api!')
-});
-
-router.get('/students', function (req, res){
-    let students = ['Sabiha', 'Neha', 'Akash']
-    res.send(students)
-})
-
-router.get('/student-details/:name', function(req, res){
-    /*
-    params is an attribute inside request that contains 
-    dynamic values.
-    This value comes from the request url in the form of an 
-    object where key is the variable defined in code 
-    and value is what is sent in the request
-    */
-
-    let requestParams = req.params
-
-    // JSON strigify function helps to print an entire object
-    // We can use any ways to print an object in Javascript, JSON stringify is one of them
-    console.log("This is the request "+ JSON.stringify(requestParams))
-    let studentName = requestParams.name
-    console.log('Name of the student is ', studentName)
+       let sumArray=0;
+       let x=arr.length;
+       let n=arr[x-1]
+       let sumNumbers=(n*(n+1)/2)
+       for(let i=0;i<x;i++)
+       {
+        sumArray=sumArray+arr[i];
+       }
+       let missingNumber=sumNumbers-sumArray
+	   res.send('The Missing Number is: '+ missingNumber);
     
-    res.send('Dummy response')
 })
-
 module.exports = router;
