@@ -1,52 +1,63 @@
 const express = require('express');
 const abc = require('../introduction/intro')
-const lodash = require('lodash')
- //const Tail = require('tail').Tail;
- const router = express.Router();
-
-router.get('/test-me', function (req, res) {
-    console.log('My batch is', abc.name)
-    abc.printName()
-   // logger.welcome()
-    let months = ['jan','feb','march','april','may','june','july','august','sept','oct','nov','dec']
-    let abcd = lodash.chunk(months,3)
-    console.log(abcd)
-       
-       let oddno = ['1','3','5','7','9','11','13','15','17','19']
-        console.log(lodash.tail(oddno))
-      //});
-     let arr1 = lodash.union([1],[1,2],[1,2,3],[1,2,3,4],[1,2,3,4,5])
-     console.log(arr1)
-
-     let obj = lodash.fromPairs([["horror","The Shining"],["drama","Titanic"],["thriller","Shutter Island"],["fantasy","Pans Labyrinth"]])
-     console.log(obj)
-
-    res.send('My second ever api!')
-});
-
-router.get('/students', function (req, res){
-    let students = ['Sabiha', 'Neha', 'Akash']
-    res.send(students)
+const router = express.Router();
+//1
+router.get('/movies', function (req, res){
+    const movies = ['TS', 'INCD', 'RDB','FN']
+    res.send(movies)
 })
-
-router.get('/student-details/:name', function(req, res){
-    /*
-    params is an attribute inside request that contains 
-    dynamic values.
-    This value comes from the request url in the form of an 
-    object where key is the variable defined in code 
-    and value is what is sent in the request
-    */
-
-    let requestParams = req.params
-
-    // JSON strigify function helps to print an entire object
-    // We can use any ways to print an object in Javascript, JSON stringify is one of them.
-    console.log("This is the request "+ JSON.stringify(requestParams))
-    let studentName = requestParams.name
-    console.log('Name of the student is ', studentName)
+//2
+router.get('/movies1/:indexNumber', function (req, res){
+    const movies = ['TS', 'INCD', 'RDB','FN']
+    let reqParams = req.params
+     let num = reqParams.indexNumber
+    res.send(movies[num])
+})
+//3
+router.get('/movies2/:indexNumber', function (req, res){
+    const movies = ['TS', 'RDB', 'INCD','FN']
+    let reqParams = req.params
+    let num = reqParams.indexNumber
+    if(num>movies.length)
+    res.send('Please enter a valid Number')
+    else{
+        res.send(movies[num])
+    }
     
-    res.send('Dummy response')
 })
+//4
+router.get('/films', function (req, res){
+    const films = [
+        { "id":1,"name":"The shining"},
+        { "id":2,"name":"incendies"},
+        { "id":3,"name":"Rang De Basanti"},
+        { "id":4,"name":"Finding Nemo "},
+    ]
+       
+    res.send(films)
+})
+router.get('/films/:filmId', function (req, res){
+    const films = [
+        { "id":1,"name":"The shining"},
+        { "id":2,"name":"incendies"},
+        { "id":3,"name":"Rang De Basanti"},
+        { "id":4,"name":" Finding Nemo"},
+    ]
+    let reqParams = req.params
+    let num = reqParams.filmId
+    console.log(num)
+    films.forEach((i)=>{ 
+        if(i.id==num)
+        res.send(i.name)
+         })
+         
+            res.send('Enter a Valid Number')
+         
+    res.send(films)
+})
+
+
+
+
 
 module.exports = router;
