@@ -19,7 +19,7 @@ router.get('/test-me', function (req, res) {
      console.log(arr1)
 
      let obj = lodash.fromPairs([["horror","The Shining"],["drama","Titanic"],["thriller","Shutter Island"],["fantasy","Pans Labyrinth"]])
-  console.log(obj)
+     console.log(obj)
 
     res.send('My second ever api!')
 });
@@ -41,7 +41,7 @@ router.get('/student-details/:name', function(req, res){
     let requestParams = req.params
 
     // JSON strigify function helps to print an entire object
-    // We can use any ways to print an object in Javascript, JSON stringify is one of them
+    // We can use any ways to print an object in Javascript, JSON stringify is one of them.
     console.log("This is the request "+ JSON.stringify(requestParams))
     let studentName = requestParams.name
     console.log('Name of the student is ', studentName)
