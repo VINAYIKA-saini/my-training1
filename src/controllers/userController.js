@@ -17,20 +17,12 @@ const createLogin = async function (req, res) {
 
 const getUser = async function (req, res) {
   let data = req.params.userId;
-  let savedData = await userModel.findOne({_id:data,isDeleted:false});
+  let savedData = await userModel.findOne({_id:data});
   
    res.send({ msg: savedData});
 };
 
 
-
-//const updateUser = async function (req, res) {
-  //let data = req.params.userId;
-  //let savedData = await userModel.findOneAndUpdate({_id:data});
-  
-  
-   //res.send({ msg: savedData});
-//}
 
 const updateUser = async function (req, res) {
   let userId = req.params.userId;
